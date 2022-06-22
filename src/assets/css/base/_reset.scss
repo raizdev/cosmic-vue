@@ -1,0 +1,10 @@
+@use "../variables";
+
+html,
+body {
+  font-size: 13px;
+  color: #333;
+  margin: 0;
+  position: relative;
+  caret-color: black !important;
+}

@@ -1,0 +1,27 @@
+.btn-light {
+  background-color: #ececec !important;
+}
+
+.btn-primary {
+  background-color: #589166 !important;
+}
+
+.btn:hover {
+  border: 0 !important;
+}
+
+.card-footer {
+
+  .btn {
+    border-top: 1px solid #acacac !important;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+
+  .btn-fw {
+    width: 100%;
+  }
+}

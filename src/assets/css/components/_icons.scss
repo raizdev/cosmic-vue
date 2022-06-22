@@ -1,0 +1,58 @@
+.icon {
+
+  height: 50px;
+  width: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 100px;
+  background-color: #dedede;
+
+  &.rooms {
+    background-image: url(/src/assets/images/web/collider/rooms.png);
+    background-color: #ff8200;
+  }
+
+  &.login {
+    background-image: url(/src/assets/images/web/collider/login_lock.png);
+    background-color: #e7e7e7;
+  }
+
+  &.groups {
+    background-image: url(/src/assets/images/web/collider/feeds.png);
+    background-color: #73b0cb;
+  }
+
+  &.badges {
+    background-image: url(/src/assets/images/web/collider/feeds.png);
+    background-color: #73b0cb;
+  }
+
+  &.icon-box-one {
+    background-image: url(/src/assets/images/web/pages/registration/icon-box-one.png);
+    background-color: #cb5077;
+  }
+
+  &.icon-box-two {
+    background-image: url(/src/assets/images/web/pages/registration/icon-box-two.png);
+    background-color: #3bd185;
+  }
+
+  &.icon-box-three {
+    background-image: url(/src/assets/images/web/pages/registration/icon-box-three.png);
+    background-color: #bcc953;
+  }
+}
+
+.icon--flags {
+  background-repeat: no-repeat;
+  height: 24px;
+  width: 24px;
+
+  &.en {
+      background-image:url(/src/assets/images/web/icons/usa.png);
+  }
+
+  &.nl {
+      background-image:url(/src/assets/images/web/icons/nl.png);
+  }
+}

@@ -1,0 +1,66 @@
+{
+    "navigation": {
+        "credits": "credits"
+    },
+    "header": {
+        "online": "habbo's online",
+        "button": {
+            "loggedIn": "Go to Habbo",
+            "notLoggedIn": "Create a account in Habbo!"
+        }
+    },
+    "home": {
+        "badges": {
+            "title": "Latest badges",
+            "description": "The latest badges added in our hotel",
+            "empty": "No badges are created yet!"
+        },
+        "rooms": {
+            "title": "Popular Rooms",
+            "description": "Check out some rooms now",
+            "empty": "No rooms are created yet!"
+        },
+        "guilds": {
+            "title": "Popular Guilds",
+            "description": "Check out some guilds",
+            "empty": "No guilds are created yet!"
+        }
+    },
+    "article": {
+        "comments": {
+            "title": "Comments",
+            "textbox": "Paste your comment here",
+            "react": "React!"
+        }
+    },
+    "auth": {
+        "login" : {
+            "title": "Login into Habbo",
+            "description": "Take a look inside and have fun!",
+            "buttonTitle": "Login"
+        },
+        "registration": {
+            "header": {
+                "text": "Registration page",
+                "subtext": "Create your account",
+                "text-first": "Create your account",
+                "sub-first": "Choose your fancy account name",
+                "text-second": "Create a strong password",
+                "sub-second": "We all want that your account is safe!",
+                "text-third": "Choose your Look",
+                "sub-third": "Did you already see the fancy one?"
+            },
+            "username": {
+                "taken": "Username already registered"
+            },
+            "password": {
+                "doesNotMatch": "Password does not match!"
+            },
+            "submit": "Go inside!",
+            "info": {
+                "title": "What can you expect?",
+                "content": "Habbo game registreer en geniet van onze fantastische voordelen zoals gratis Habbo Credits, VIP-lidmaatschap of ons welkomstgeschenk. Allemaal helemaal gratis!<br /><br /><br /><br />Je kunt Habbo gratis spelen en daarbij een oneindig universum van kamers, uitdagingen, chats verkennen en honderden gratis Habbo-credits verdienen. vul nu het hobbaregister in."
+            }
+        }
+    }
+}

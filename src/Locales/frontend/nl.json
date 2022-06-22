@@ -1,0 +1,43 @@
+{
+    "navigation": {
+        "credits": "credits"
+    },
+    "header": {
+        "online": "habbo's online",
+        "button": {
+            "loggedIn": "Ga naar Habbo",
+            "notLoggedIn": "Registreer je in Habbo"
+        }
+    },
+    "home": {
+        "badges": {
+        "title": "Laatste badges",
+        "description": "Onze laatst toegevoegde badges",
+        "empty": "Er zijn nog geen badges toegevoegd"
+    },
+    "rooms": {
+        "title": "Populairste kamers",
+        "description": "Voeg jij toe bij een van deze kamers?",
+        "empty": "No rooms are created yet!"
+    },
+    "guilds": {
+        "title": "Populairste groepen",
+        "description": "Dit zijn de populairste tot nu toe",
+        "empty": "Er zijn nog geen groepen gemaakt"
+    }
+    },
+    "article": {
+        "comments": {
+            "title": "Reacties",
+            "textbox": "Plaats je reactie hier",
+            "react": "Plaatsen"
+        }
+    },
+    "auth": {
+        "login" : {
+            "title": "Kom jij binnen?",
+            "description": "Maak je streak vol tot te gekke gifts",
+            "buttonTitle": "Login"
+        }
+    }
+}
