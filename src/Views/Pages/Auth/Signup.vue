@@ -18,7 +18,7 @@
             <b-col md="5">
                 <Form
                     @submit="onSubmit"
-                    :validation-schema="schema"
+                    :validation-schema="schema()"
                 >
                 <b-row>
                     <b-col md="12">
@@ -195,6 +195,37 @@ export default {
             sex: '',
             look: ''
         },
+        schema() {
+          const {t} = useI18n()
+          const store = useStore()
+
+          let oldValue = ''
+
+          return Yup.object().shape({
+            username: Yup.string().required(),
+            mail: Yup.string().email().required(),
+            password: Yup.string().min(6).required(),
+
+            password_confirmation: Yup.string()
+                .required()
+                .oneOf([Yup.ref("password")], t('auth.registration.password.doesNotMatch'))
+          }).test("checkDuplUsername", t('auth.registration.username.taken'), function (value) {
+            if(oldValue !== value.username) {
+              return store.dispatch('auth/userAvailability', {username: value.username })
+                  .then((res) => {
+                    oldValue = value.username
+                    if(res.availability === 0) {
+                      return true
+                    } else {
+                      return this.createError({
+                        path: "username",
+                        message: t('auth.registration.username.taken'),
+                      })
+                    }
+                  })
+            }
+        })
+      }
     }),
 
     methods: {
@@ -226,41 +257,6 @@ export default {
                 this.$router.replace({
                     name: 'home'
                 })
-            })
-        }
-    },
-
-    computed: {
-        schema () {
-
-            const {t} = useI18n()
-            const store = useStore()
-
-            let oldValue = ''
-
-            return Yup.object().shape({
-                username: Yup.string().required(),
-                mail: Yup.string().email().required(),
-                password: Yup.string().min(6).required(),
-
-                password_confirmation: Yup.string()
-                    .required()
-                    .oneOf([Yup.ref("password")], t('auth.registration.password.doesNotMatch'))
-            }).test("checkDuplUsername", t('auth.registration.username.taken'), function (value) {
-                if(oldValue !== value.username) {
-                    return store.dispatch('auth/userAvailability', {username: value.username })
-                        .then((res) => {
-                            oldValue = value.username
-                            if(res.availability === 0) {
-                                return true
-                            } else {
-                                return this.createError({
-                                    path: "username",
-                                    message: t('auth.registration.username.taken'),
-                                })
-                            }
-                        })
-                }
             })
         }
     },
