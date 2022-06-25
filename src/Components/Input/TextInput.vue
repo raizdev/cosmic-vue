@@ -1,3 +1,4 @@
+
 <template>
     <b-form-group id="example-input-group-1" :label="label" label-for="example-input-1">
         <b-form-input
@@ -14,17 +15,18 @@
         ></b-form-input>
         <b-form-invalid-feedback
             :id="`errorHandler-${name}`" v-show="errorMessage || meta.valid"
-        >{{ errorMessage || successMessage }}
+        >{{ errorMessage }}
         </b-form-invalid-feedback>
     </b-form-group>
 </template>
-
 <script>
-import { toRef } from "vue";
-import { useField } from "vee-validate";
 import { BFormInvalidFeedback, BFormInput, BFormGroup } from "bootstrap-vue-3";
+import { useField } from 'vee-validate';
+import { watch, ref } from 'vue';
 
 export default {
+    name: 'TextInput',
+
     props: {
         type: {
             type: String,
@@ -42,10 +44,6 @@ export default {
             type: String,
             required: false,
         },
-        successMessage: {
-            type: String,
-            default: "",
-        },
         placeholder: {
             type: String,
             default: "",
@@ -53,26 +51,37 @@ export default {
         autocomplete: {
             type: String,
             default: "off"
-        }
+        },
+        modelValue: [String, Number],
+        rules: String
     },
 
-    components: {
-        BFormGroup,
+    components:{
+        BFormInvalidFeedback,
         BFormInput,
-        BFormInvalidFeedback
+        BFormGroup
     },
 
     setup(props) {
-        const name = toRef(props, "name");
+        var name = props.name.replace(/ /g, '');
+
+        var validationRef = ref(props.rules);
+
+        watch(
+            () => props.rules,
+            (newValue, oldValue) => {
+                validationRef.value = newValue;
+            }
+        );
 
         const {
             value: inputValue,
             errorMessage,
             handleBlur,
             handleChange,
-            meta,
-        } = useField(name, undefined, {
-            initialValue: props.value,
+            meta } = useField(name, validationRef, {
+            initialValue: props.modelValue,
+            label: props.name,
         });
 
         return {
@@ -80,8 +89,24 @@ export default {
             handleBlur,
             errorMessage,
             inputValue,
-            meta,
+            meta
         };
     },
+
+    watch: {
+        modelValue(val) {
+            if (val) this.value = val;
+        },
+    },
+
+    emits: ['update:modelValue'],
+
+    computed: {
+        isRequired() {
+            return this.rules?.required;
+        },
+    }
 };
 </script>
+
+<style></style>

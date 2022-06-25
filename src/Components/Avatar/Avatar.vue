@@ -1,5 +1,6 @@
 <template>
-    <img alt="User avatar" :class="forwardClass" class="avatar avatar-m" v-bind:src="`${imaging}?figure=${figure}&amp;head_direction=${headDirection}&amp;direction=${direction}&amp;gesture=${gesture}&amp;size=${size}&amp;headonly=${headOnly}`">
+    <img
+        alt="User avatar" :class="forwardClass" class="avatar avatar-m" v-bind:src="`${imaging}?figure=${figure}&amp;head_direction=${headDirection}&amp;direction=${direction}&amp;gesture=${gesture}&amp;size=${size}&amp;headonly=${headOnly}`">
 </template>
 
 <script>

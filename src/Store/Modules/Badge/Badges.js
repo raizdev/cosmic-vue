@@ -24,7 +24,7 @@ export default {
 
     actions: {
         getBadges: async function ({commit, dispatch}) {
-            await api.get('badges/list/11')
+            await api.get('badges/list/10')
                 .then((response) => {
                     dispatch('loader/change', 'getHotelBadges', {root:true})
                     commit('APPEND_NEW_BADGES', response)

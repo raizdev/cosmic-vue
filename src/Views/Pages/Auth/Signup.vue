@@ -18,62 +18,64 @@
             <b-col md="5">
                 <Form
                     @submit="onSubmit"
-                    :validation-schema="schema"
                 >
-                <b-row>
-                    <b-col md="12">
-                        <b-card no-body>
-                            <template #header>
-                                <CardHeader
-                                    :title="$t('auth.registration.header.text-first')"
-                                    :subTitle="$t('auth.registration.header.sub-first')"
-                                    icon="icon-box-one"
-                                >
-                                </CardHeader>
-                            </template>
-                            <b-card-body>
-                                <TextInput
-                                    name="username"
-                                    type="text"
-                                    placeholder="Username"
-                                />
-                                <TextInput
-                                    name="mail"
-                                    type="email"
-                                    placeholder="E-mailadress"
-                                />
-                            </b-card-body>
-                        </b-card>
-                    </b-col>
-                </b-row>
-                <b-row class="mt-4">
-                    <b-col md="12">
-                        <b-card no-body>
-                            <template #header>
-                                <CardHeader
-                                    :title="$t('auth.registration.header.text-second')"
-                                    :subTitle="$t('auth.registration.header.sub-second')"
-                                    icon="icon-box-two"
-                                >
-                                </CardHeader>
-                            </template>
-                            <b-card-body>
-                                <TextInput
-                                    name="password"
-                                    type="password"
-                                    placeholder="Password"
-                                    autocomplete="on"
-                                />
-                                <TextInput
-                                    name="password_confirmation"
-                                    type="password"
-                                    placeholder="Password confirmation"
-                                    autocomplete="on"
-                                />
-                            </b-card-body>
-                        </b-card>
-                    </b-col>
-                </b-row>
+                    <b-row>
+                        <b-col md="12">
+                            <b-card no-body>
+                                <template #header>
+                                    <CardHeader
+                                        :title="$t('auth.registration.header.text-first')"
+                                        :subTitle="$t('auth.registration.header.sub-first')"
+                                        icon="icon-box-one"
+                                    >
+                                    </CardHeader>
+                                </template>
+                                <b-card-body>
+                                    <TextInput
+                                        placeholder="Username"
+                                        name="username"
+                                        :rules="{ required: true, min: 8 }"
+                                    />
+                                    <TextInput
+                                        name="mail"
+                                        type="email"
+                                        placeholder="E-mailadres"
+                                        rules="required"
+                                    />
+                                </b-card-body>
+                            </b-card>
+                        </b-col>
+                    </b-row>
+                    <b-row class="mt-4">
+                        <b-col md="12">
+                            <b-card no-body>
+                                <template #header>
+                                    <CardHeader
+                                        :title="$t('auth.registration.header.text-second')"
+                                        :subTitle="$t('auth.registration.header.sub-second')"
+                                        icon="icon-box-two"
+                                    >
+                                    </CardHeader>
+                                </template>
+                                <b-card-body>
+                                    <TextInput
+                                        name="password"
+                                        type="password"
+                                        placeholder="Password"
+                                        autocomplete="on"
+                                        rules="required"
+                                    />
+                                    <TextInput
+                                        name="password_confirmation"
+                                        type="password"
+                                        placeholder="Password confirmation"
+                                        autocomplete="on"
+                                        rules="required"
+                                    />
+                                </b-card-body>
+                            </b-card>
+                        </b-col>
+                    </b-row>
                     <b-row class="mt-4">
                         <b-col md="12">
                             <b-card no-body>
@@ -148,14 +150,11 @@
 </template>
 
 <script>
-import * as Yup from "yup";
-
 import { BCol, BRow, BCard, BCardBody, BForm, BFormInput, BFormInvalidFeedback,
     BFormValidFeedback, BFormGroup, BLink, BButton, BCardFooter } from 'bootstrap-vue-3';
 
 import { Form, Field } from 'vee-validate';
-import { mapActions, useStore } from "vuex";
-import { useI18n } from "vue-i18n";
+import { mapActions } from "vuex";
 
 import TextInput from "../../../Components/Input/TextInput.vue";
 import SelectInput from "../../../Components/Input/SelectInput.vue";
@@ -164,6 +163,7 @@ import Avatar from "../../../Components/Avatar/Avatar.vue";
 
 export default {
     name: "App",
+
     components: {
         Avatar,
         SelectInput,
@@ -194,7 +194,7 @@ export default {
         user: {
             sex: '',
             look: ''
-        },
+        }
     }),
 
     methods: {
@@ -230,43 +230,11 @@ export default {
         }
     },
 
-    computed: {
-        schema () {
-
-            const {t} = useI18n()
-            const store = useStore()
-
-            let oldValue = ''
-
-            return Yup.object().shape({
-                username: Yup.string().required(),
-                mail: Yup.string().email().required(),
-                password: Yup.string().min(6).required(),
-
-                password_confirmation: Yup.string()
-                    .required()
-                    .oneOf([Yup.ref("password")], t('auth.registration.password.doesNotMatch'))
-            }).test("checkDuplUsername", t('auth.registration.username.taken'), function (value) {
-                if(oldValue !== value.username) {
-                    return store.dispatch('auth/userAvailability', {username: value.username })
-                        .then((res) => {
-                            oldValue = value.username
-                            if(res.availability === 0) {
-                                return true
-                            } else {
-                                return this.createError({
-                                    path: "username",
-                                    message: t('auth.registration.username.taken'),
-                                })
-                            }
-                        })
-                }
-            })
-        }
-    },
-
     mounted() {
         this.changeGender('M');
+    },
+    computed: {
+
     }
 };
 </script>

@@ -64,8 +64,8 @@ export default {
 
             let comment = getters.comments.slice(-1)[0];
 
-            if(typeof comment !== "undefined"
-                && comment.user_id !== getters.user.id)
+            if(typeof comment === "undefined"
+                || comment.user_id === getters.user.id)
             {
                 return
             }

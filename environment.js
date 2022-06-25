@@ -1,5 +1,5 @@
 export const environment  = {
-    api: "https://ares.habbo.ng",
+    api: "http://localhost",
     hotelName: "Habbo",
     nitro: {
         url: "https://client.habbo.ng",

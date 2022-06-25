@@ -11,6 +11,7 @@ import articles from './Modules/Article/Articles';
 import photos from './Modules/Photos/Photos';
 import rooms from './Modules/Rooms/Rooms';
 import looks from './Modules/User/Looks';
+import friends from './Modules/User/Friends';
 import permissions from './Modules/User/Permissions';
 import guilds from './Modules/Guilds/Guilds';
 
@@ -34,7 +35,8 @@ export default createStore({
         rooms,
         locales,
         hallOfFame,
-        guilds
+        guilds,
+        friends
     },
     plugins: [plugin]
 })
