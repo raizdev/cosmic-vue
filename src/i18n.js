@@ -1,8 +1,7 @@
 import { createI18n } from 'vue-i18n/index'
 import { messages } from "vite-i18n-resources";
 import { environment } from "../environment";
-import { defineRule, configure } from "vee-validate";
-import AllRules from "@vee-validate/rules";
+import { configure } from "vee-validate";
 import { localize } from '@vee-validate/i18n';
 
 const locale = localStorage.getItem('locale') || environment.locale.default;
@@ -18,10 +17,6 @@ configure({
     validateOnChange: true,
     validateOnInput: false,
     validateOnModelUpdate: true
-});
-
-Object.keys(AllRules).forEach((rule) => {
-    defineRule(rule, AllRules[rule]);
 });
 
 import(`./Locales/frontend/${locale}.json`)

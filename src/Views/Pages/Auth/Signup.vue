@@ -34,13 +34,13 @@
                                     <TextInput
                                         placeholder="Username"
                                         name="username"
-                                        :rules="{ required: true, min: 8 }"
+                                        rules="required|min:4|max:12|usernameTaken"
                                     />
                                     <TextInput
                                         name="mail"
                                         type="email"
                                         placeholder="E-mailadres"
-                                        rules="required"
+                                        rules="required|email"
                                     />
                                 </b-card-body>
                             </b-card>
@@ -63,14 +63,14 @@
                                         type="password"
                                         placeholder="Password"
                                         autocomplete="on"
-                                        rules="required"
+                                        rules="required|min:6"
                                     />
                                     <TextInput
                                         name="password_confirmation"
                                         type="password"
                                         placeholder="Password confirmation"
                                         autocomplete="on"
-                                        rules="required"
+                                        rules="required|confirmed:@password"
                                     />
                                 </b-card-body>
                             </b-card>
@@ -153,13 +153,22 @@
 import { BCol, BRow, BCard, BCardBody, BForm, BFormInput, BFormInvalidFeedback,
     BFormValidFeedback, BFormGroup, BLink, BButton, BCardFooter } from 'bootstrap-vue-3';
 
-import { Form, Field } from 'vee-validate';
+import { Form, Field, defineRule } from 'vee-validate';
+import { required, email, min, confirmed } from '@vee-validate/rules';
+import { usernameTaken } from "../../../Common/Helpers/Validator/Rules";
+
 import { mapActions } from "vuex";
 
 import TextInput from "../../../Components/Input/TextInput.vue";
 import SelectInput from "../../../Components/Input/SelectInput.vue";
 import CardHeader from '../../../Components/Card/CardHeader.vue'
 import Avatar from "../../../Components/Avatar/Avatar.vue";
+
+defineRule('required', required);
+defineRule('email', email);
+defineRule('min', min);
+defineRule('confirmed', confirmed);
+usernameTaken()
 
 export default {
     name: "App",
@@ -227,7 +236,9 @@ export default {
                     name: 'home'
                 })
             })
-        }
+        },
+
+        usernameTaken
     },
 
     mounted() {

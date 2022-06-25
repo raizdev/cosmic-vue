@@ -4,7 +4,8 @@ import {environment} from "../../../environment";
 
 export default function setup() {
 
-    let responseCodes = import(`../../Locales/backend/${localStorage.getItem("locale")}.json`).then(module => module.default);
+    const locale = localStorage.getItem("locale") || environment.locale.default
+    let responseCodes = import(`../../Locales/backend/${locale}.json`).then(module => module.default);
 
     api.interceptors.request.use(function(config) {
         return config;

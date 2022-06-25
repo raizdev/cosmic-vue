@@ -63,6 +63,7 @@
         "regex": "{field} formaat is ongeldig",
         "required": "{field} is verplicht",
         "required_if": "{field} is verplicht",
-        "size": "{field} mag niet groter zijn dan 0:{size}KB"
+        "size": "{field} mag niet groter zijn dan 0:{size}KB",
+        "usernameTaken": "{field} is al in al ingebruik!"
     }
 }

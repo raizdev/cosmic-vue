@@ -88,6 +88,7 @@
         "regex": "The {field} field format is invalid",
         "required_if": "The {field} field is required",
         "required": "The {field} field is required",
-        "size": "The {field} field size must be less than 0:{size}KB"
+        "size": "The {field} field size must be less than 0:{size}KB",
+        "usernameTaken": "{field} is already registered!"
     }
 }
