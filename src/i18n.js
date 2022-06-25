@@ -13,24 +13,24 @@ const i18n = createI18n({
     messages
 });
 
-import(`./Locales/frontend/${locale}.json`)
-    .then((module) => {
-        let messages = module.default.messages;
-
-        configure({
-            generateMessage: localize(locale,
-                {
-                    messages
-                }),
-            validateOnBlur: true,
-            validateOnChange: true,
-            validateOnInput: false,
-            validateOnModelUpdate: true
-        });
-    });
+configure({
+    validateOnBlur: true,
+    validateOnChange: true,
+    validateOnInput: false,
+    validateOnModelUpdate: true
+});
 
 Object.keys(AllRules).forEach((rule) => {
     defineRule(rule, AllRules[rule]);
 });
+
+import(`./Locales/frontend/${locale}.json`)
+    .then((module) => {
+        let messages = module.default.messages;
+        configure({
+            generateMessage: localize(locale, { messages })
+        })
+    });
+
 
 export default i18n
