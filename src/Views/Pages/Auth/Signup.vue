@@ -34,7 +34,7 @@
                                     <TextInput
                                         placeholder="Username"
                                         name="username"
-                                        rules="required|min:4|max:12|usernameTaken"
+                                        rules="required|min:4|max:12|usernameAvailable"
                                     />
                                     <TextInput
                                         name="mail"
@@ -154,8 +154,8 @@ import { BCol, BRow, BCard, BCardBody, BForm, BFormInput, BFormInvalidFeedback,
     BFormValidFeedback, BFormGroup, BLink, BButton, BCardFooter } from 'bootstrap-vue-3';
 
 import { Form, Field, defineRule } from 'vee-validate';
-import { required, email, min, confirmed } from '@vee-validate/rules';
-import { usernameTaken } from "../../../Common/Helpers/Validator/Rules";
+import { required, email, min, confirmed, max } from '@vee-validate/rules';
+import { usernameAvailable } from "../../../Common/Helpers/Validator/Rules";
 
 import { mapActions } from "vuex";
 
@@ -167,8 +167,9 @@ import Avatar from "../../../Components/Avatar/Avatar.vue";
 defineRule('required', required);
 defineRule('email', email);
 defineRule('min', min);
+defineRule('max', max);
 defineRule('confirmed', confirmed);
-usernameTaken()
+defineRule('usernameAvailable', usernameAvailable);
 
 export default {
     name: "App",
@@ -238,7 +239,6 @@ export default {
             })
         },
 
-        usernameTaken
     },
 
     mounted() {
